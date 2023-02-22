@@ -12,3 +12,15 @@ class HBNBCommand (cmd.Cmd):
     classes = {
         "BaseModel": BaseModel
     }
+
+    def emptyline(self):
+        pass
+
+    def do_quit(self, arg) :
+        """quit command"""
+        return  True
+
+    def do_EOF(self, arg):
+        """end of file"""
+        print()
+        return True
