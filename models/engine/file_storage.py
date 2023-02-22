@@ -30,6 +30,6 @@ class FileStorage:
             with open(self.__file_path, 'r') as file:
                 new_dict = json.load(file)
                 for key, value in new_dict.items():
-                    self.__objects[key] = classes[value['__class__']](**value)
+                   self.new(dict[value['__class__']](**value))
         except FileNotFoundError:
             pass
