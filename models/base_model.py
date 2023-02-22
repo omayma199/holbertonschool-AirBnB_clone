@@ -5,7 +5,7 @@ from uuid import uuid4
 import models
 
 
-class aseModel:
+class BaseModel:
     """
     The BaseModel Class
     """
