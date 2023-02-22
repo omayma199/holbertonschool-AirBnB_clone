@@ -23,14 +23,13 @@ class FileStorage:
             json.dump(dict, file)
     
     def reload(self):
-        data_dict = {}
-        classes = {
+        dict = {
             "BaseModel": BaseModel,
         }
         try:
             with open(self.__file_path, 'r') as file:
-                data_dict = json.load(file)
-                for key, value in data_dict.items():
+                new_dict = json.load(file)
+                for key, value in new_dict.items():
                     self.__objects[key] = classes[value['__class__']](**value)
         except FileNotFoundError:
             pass
