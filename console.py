@@ -4,14 +4,13 @@ import cmd
 from models.base_model import BaseModel
 import models
 
+storage = models.storage
+
 
 class HBNBCommand (cmd.Cmd):
     """Console class"""
 
     prompt = '(hbnb) '
-    classes = {
-        "BaseModel": BaseModel
-    }
 
     def emptyline(self):
         pass
@@ -24,3 +23,5 @@ class HBNBCommand (cmd.Cmd):
         """end of file"""
         print()
         return True
+if __name__ == "__main__":
+    HBNBCommand().cmdloop()
