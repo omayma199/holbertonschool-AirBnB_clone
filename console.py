@@ -2,6 +2,7 @@
 """Entry point of Console"""
 import cmd
 from models.base_model import BaseModel
+from models.engine.file_storage import FileStorage
 import models
 from models  import classes
 
