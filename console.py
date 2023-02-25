@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Entry point of Console"""
 import cmd
+from datetime import datetime
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
 import models
@@ -10,6 +11,7 @@ from models.state import State
 from models.city import City
 from models.amenity import Amenity
 from models.review import Review
+
 
 
 storage = models.storage
@@ -37,30 +39,41 @@ class HBNBCommand (cmd.Cmd):
         print()
         return True
         
-    def do_create (self, args):
+    def do_create (self, arg):
         """create a new instance of BaseModel"""
-        if len(args) < 2:
+        List = arg.split()
+        if arg == "" :
             print('* class name missing *')
         else:
             try:
-                new = eval(args)()
+                new = eval(List[0])()
                 new.save()
                 print(new.id)
             except (NameError, SyntaxError):
                 print("* class doesn't exist *")
-                pass
-    def do_show(self, args):
-        if args == "":
-            print("* class name missing *")
-            pass
-        else:
-            store = models.storage.all()
-            print(" instance id missing ")
+                
+    def do_show(self, arg):
+        """show object by id"""
+        List = arg.split()
+        if arg == "":
+            print("** class name missing **")
+            return
+        if len(List) == 1:
+            print("** instance id missing **")
+            return
         try:
-            key = "{}.{}".format(self, args[1])
-            print(str(store[key]))
+            eval(List[0])()
+        except:
+            print("** class doesn't exist **")
+        
+        obj = storage.all()
+        key = List[0]  +   "." +  List[1]
+
+        try:
+            value = obj[key]
+            print(value)
         except KeyError:
-            print("* class doesn't exist *")
+            print("** no instance found **")
 
     def do_destroy(self, arg):
 
