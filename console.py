@@ -4,7 +4,7 @@ import cmd
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
 import models
-from models  import classes
+
 
 storage = models.storage
 
@@ -13,6 +13,9 @@ class HBNBCommand (cmd.Cmd):
     """Console class"""
 
     prompt = '(hbnb) '
+    classes = {
+               'BaseModel': BaseModel
+              }
 
     def emptyline(self):
         pass
@@ -59,47 +62,53 @@ class HBNBCommand (cmd.Cmd):
             store = models.storage.all()
             keys = list(store.keys())
             key = "{}.{}".format(self, arg[1])
-        if key not in keys:
-            print('* instance id missing *')
-        else:
-            del store[key]
-            models.storage.save()
-        
-        def do_all(self, arg):
-            List = arg.split()
-            if List[0] not in classes:
-                print("* class doesn't exist *")
+            if key not in keys:
+                print('* instance id missing *')
             else:
-                newList = []
+                del store[key]
+                models.storage.save()
+        
+    def do_all(self, arg):
+        List = arg.split()
+        obj_list = []
+        if List[0] not in self.classes:
+            print("** class doesn't exist **")
+        else:
+            newList = []
             for key, value in  storage.all().items():
-                if value._class.name_== List[0]:
-                    newList += [value._str_()]
+                if value.__class__.__name__== List[0]:
+                    newList += [value.__str__()]
             print(newList)
 
-        def do_update(self, arg):
-            object = models.storage.all()
-            if not arg:
-                print("* class name missing *")
-                return 0
-            elif arg[0] not in classes:
-                print("* class doesn't exist *")
-                return 0
-            elif len(arg) < 2:
-                print("* instance id missing *")
-                return 0
-            elif len(arg) < 3:
-                print("* attribute name missing *")
-                return 0
-            elif len(arg) < 4:
-                print("* value missing *")
-                return 0
+    def do_update(self, arg):
+        """pdate an objject by className and id, with attribute and value"""
+        if not arg:
+            print("** class name missing **")
+            return
+        Lists = arg.split(" ")
+        Objts =  storage.all()
+        if Lists[0] in self.classes:
+            if len(Lists) < 2:
+                print("** instance id missing **")
+                return
+            v = Lists[0] + "." + Lists[1]
+            if v not in Objts:
+                print("** no instance found **")
+            else:
+                obj = Objts[v]
+                attrbte  = ["id", "created_at", "updated_at"]
+                if obj:
+                    List = arg.split(" ")
+                    if len(List) < 3:
+                        print("** attribute name missing **")
+                    elif len(List) < 4:
+                        print("** value missing **")
+                    elif List[2] not in attrbte:
+                        obj.__dict__[List[2]] = List[3]
+                        obj.updated_at = datetime.now()
+                        storage.save()
+        else:
+            print("** class doesn't exist **")
 
-        key = "{}.{}".format(arg[0], arg[1])
-        try:
-            object[key]._dict_[arg[2]] = arg[3]
-            models.storage.save()
-        except Exception:
-            print("* no instance found *")
-            return 0
-if _name_ == "_main_":
+if __name__ == '__main__':
     HBNBCommand().cmdloop()
