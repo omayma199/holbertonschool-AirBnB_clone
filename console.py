@@ -11,19 +11,21 @@ from models.state import State
 from models.city import City
 from models.amenity import Amenity
 from models.review import Review
-
+from models  import classes
 
 
 storage = models.storage
 
-classes = {'BaseModel': BaseModel, 'User': User, 'Place': Place,
-            'State': State, 'City': City, 'Amenity': Amenity,
-            'Review': Review}
+
 class HBNBCommand (cmd.Cmd):
     """Console class"""
 
     prompt = '(hbnb) '
-    
+    classes = {
+               'BaseModel': BaseModel, 'User': User, 'Place': Place,
+               'State': State, 'City': City, 'Amenity': Amenity,
+               'Review': Review
+              }
 
     def emptyline(self):
         pass
