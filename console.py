@@ -68,11 +68,13 @@ class HBNBCommand (cmd.Cmd):
         except:
             print("** class doesn't exist **")
         
-        try:
-            value == obj[key]
-            print(value)
-        except KeyError:
-            print("** no instance found **")
+        if List[0] in classes:
+            if len(List) > 1:
+                key = List[0] + "." + List[1]
+                if key in models.storage.all():
+                    print(models.storage.all()[key])
+                else:
+                    print("** no instance found **")
 
     def do_destroy(self, arg):
         lists = arg.split()
