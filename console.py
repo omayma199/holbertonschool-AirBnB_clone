@@ -76,25 +76,27 @@ class HBNBCommand (cmd.Cmd):
             print("** no instance found **")
 
     def do_destroy(self, arg):
-        List = arg.split()
-        if arg == "":
+        args = arg.split()
+        container_obj = []
+        if len(args) == 0:
             print("** class name missing **")
             return
-        if len[List] == 1:
-            print("** instance id missing **")
         try:
-            eval(List[0])()
-        except:
+            eval(args[0])
+        except Exception:
             print("** class doesn't exist **")
-        obj = storage.all()
-        key = List[0] +  "." + List[1]
-
-        try:
-            del obj[key]
-        except:
-            print("** no instance found **")
-        storage.save()
-    
+            return
+        if len(args) == 1:
+            print("** instance id missing **")
+        else:
+            storage.reload()
+            container_obj = storage.all()
+            key_id = args[0] + "." + args[1]
+            if key_id in container_obj:
+                del container_obj[key_id]
+                storage.save()
+            else:
+                print("** no instance found **")
         
     def do_all(self, arg):
         List = arg.split()
@@ -109,7 +111,6 @@ class HBNBCommand (cmd.Cmd):
             print(newList)
 
     def do_update(self, arg):
-        """pdate an objject by className and id, with attribute and value"""
         if not arg:
             print("** class name missing **")
             return
