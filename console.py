@@ -84,10 +84,11 @@ class HBNBCommand (cmd.Cmd):
             keys = list(store.keys())
             key = "{}.{}".format(self, arg[1])
             if key not in keys:
-                print('** instance id missing **')
+                print("** instance id missing **")
             else:
                 del store[key]
                 models.storage.save()
+                print("** no instance found **")
         
     def do_all(self, arg):
         List = arg.split()
