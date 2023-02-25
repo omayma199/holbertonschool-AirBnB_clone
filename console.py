@@ -69,7 +69,7 @@ class HBNBCommand (cmd.Cmd):
             print("** class doesn't exist **")
         
         try:
-            value = obj[key]
+            value == obj[key]
             print(value)
         except KeyError:
             print("** no instance found **")
