@@ -99,7 +99,7 @@ class HBNBCommand (cmd.Cmd):
     def do_all(self, arg):
         List = arg.split()
         obj_list = []
-        if List[0] not in self.classes:
+        if List[0] not in classes:
             print("** class doesn't exist **")
         else:
             newList = []
