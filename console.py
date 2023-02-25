@@ -43,14 +43,14 @@ class HBNBCommand (cmd.Cmd):
         """create a new instance of BaseModel"""
         List = arg.split()
         if arg == "" :
-            print('* class name missing *')
+            print('** class name missing **')
         else:
             try:
                 new = eval(List[0])()
                 new.save()
                 print(new.id)
             except (NameError, SyntaxError):
-                print("* class doesn't exist *")
+                print("** class doesn't exist **")
                 
     def do_show(self, arg):
         """show object by id"""
@@ -78,13 +78,13 @@ class HBNBCommand (cmd.Cmd):
     def do_destroy(self, arg):
 
         if arg == "":
-            print("* class name missing *")
+            print("** class name missing **")
         else:
             store = models.storage.all()
             keys = list(store.keys())
             key = "{}.{}".format(self, arg[1])
             if key not in keys:
-                print('* instance id missing *')
+                print('** instance id missing **')
             else:
                 del store[key]
                 models.storage.save()
