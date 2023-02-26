@@ -101,7 +101,13 @@ class HBNBCommand (cmd.Cmd):
         
     def do_all(self, arg):
         List = arg.split()
-        if List[-1] in self.classes:
+        classes = {
+               'BaseModel': BaseModel, 'User': User, 'Place': Place,
+               'State': State, 'City': City, 'Amenity': Amenity,
+               'Review': Review
+              }
+
+        if List[0] in self.classes:
             newList = []
             for key, value in  storage.all().items():
                 if value.__class__.__name__== List[0]:
