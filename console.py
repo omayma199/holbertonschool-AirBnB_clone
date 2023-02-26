@@ -121,7 +121,7 @@ class HBNBCommand (cmd.Cmd):
                 print("** instance id missing **")
                 return
             value = List[0] + "." + List[1]
-            if v not in Objts:
+            if value not in Objts:
                 print("** no instance found **")
             else:
                 obj = Objts[value]
