@@ -82,7 +82,7 @@ class HBNBCommand (cmd.Cmd):
             print("** class name missing **")
             return
         try:
-            eval(list[0])
+            eval(List[0])
         except :
             print("** class doesn't exist **")
             return
