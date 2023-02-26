@@ -99,14 +99,13 @@ class HBNBCommand (cmd.Cmd):
                 print("** no instance found **")
         
     def do_all(self, arg):
-        List = arg.split()
-        obj_list = []
-        if List[1] not in self.classes:
+        
+        if arg[0] not in self.classes:
             print("** class doesn't exist **")
         else:
             newList = []
             for key, value in  storage.all().items():
-                if value.__class__.__name__== List[0]:
+                if value.__class__.__name__== arg[0]:
                     newList += [value.__str__()]
             print(newList)
 
