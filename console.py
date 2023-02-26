@@ -119,6 +119,7 @@ class HBNBCommand (cmd.Cmd):
             return
         elif List[0] not in self.classes:
             print("** class doesn't exist **")
+            return
         if List[0] in self.classes:
             if len(List) < 2:
                 print("** instance id missing **")
