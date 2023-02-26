@@ -99,15 +99,18 @@ class HBNBCommand (cmd.Cmd):
                 print("** no instance found **")
         
     def do_all(self, arg):
-        
-        if arg[0] not in self.classes:
-            print("** class doesn't exist **")
-        else:
+        List = arg.split()
+        obj_list = []
+        if List[0] in self.classes:
             newList = []
             for key, value in  storage.all().items():
-                if value.__class__.__name__== arg[0]:
+                if value.__class__.__name__== List[0]:
                     newList += [value.__str__()]
             print(newList)
+            
+        else:
+            print("** class doesn't exist **")
+            
 
     def do_update(self, arg):
         List = arg.split()
