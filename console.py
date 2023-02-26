@@ -137,7 +137,7 @@ class HBNBCommand (cmd.Cmd):
                         obj.__dict__[List[2]] = List[3]
                         obj.updated_at = datetime.now()
                         storage.save()
-        else:
+        elif: List[0] not in self.classes:
             print("** class doesn't exist **")
 
 if __name__ == '__main__':
