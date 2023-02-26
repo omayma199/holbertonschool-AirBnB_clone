@@ -14,7 +14,6 @@ from models.amenity import Amenity
 from models.review import Review
 
 
-
 storage = models.storage
 
 
@@ -31,19 +30,19 @@ class HBNBCommand (cmd.Cmd):
     def emptyline(self):
         pass
 
-    def do_quit(self, arg) :
+    def do_quit(self, arg):
         """quit command"""
-        return  True
+        return True
 
     def do_EOF(self, arg):
         """end of file"""
         print()
         return True
-        
-    def do_create (self, arg):
+    
+    def do_create(self, arg):
         """create a new instance of BaseModel"""
         List = arg.split()
-        if arg == "" :
+        if arg == "":
             print('** class name missing **')
         else:
             try:
@@ -52,7 +51,7 @@ class HBNBCommand (cmd.Cmd):
                 print(new.id)
             except (NameError, SyntaxError):
                 print("** class doesn't exist **")
-                
+           
     def do_show(self, arg):
         """show object by id"""
         List = arg.split()
@@ -75,7 +74,7 @@ class HBNBCommand (cmd.Cmd):
                 print(value)
             else:
                 print("** no instance found **")
-    
+
     def do_destroy(self, arg):
         List = arg.split()
         obj = []
@@ -84,13 +83,13 @@ class HBNBCommand (cmd.Cmd):
             return
         try:
             eval(List[0])
-        except :
+        except:
             print("** class doesn't exist **")
             return
         if len(List) == 1:
             print("** instance id missing **")
         else:
-            
+
             obj = storage.all()
             key_id = List[0] + "." + List[1]
             if key_id in obj:
@@ -98,25 +97,23 @@ class HBNBCommand (cmd.Cmd):
                 storage.save()
             else:
                 print("** no instance found **")
-        
+
     def do_all(self, arg):
         list = arg.split()
         obj_list = []
         if list[0] in self.classes:
             newList = []
-            for key, value in  storage.all().items():
-                if value.__class__.__name__== list[0]:
+            for key, value in storage.all().items():
+                if value.__class__.__name__ == list[0]:
                     newList += [value.__str__()]
             print(newList)
 
         else:
             print("** class doesn't exist **")
-            
 
     def do_update(self, arg):
         List = arg.split()
         Objts =  models.storage.all()
-
         if len(List) == 0:
             print("** class name missing **")
             return
@@ -132,7 +129,7 @@ class HBNBCommand (cmd.Cmd):
                 print("** no instance found **")
             else:
                 obj = Objts[value]
-                attrbte  = ["id", "created_at", "updated_at"]
+                attrbte = ["id", "created_at", "updated_at"]
                 if obj:
                     List = arg.split(" ")
                     if len(List) < 3:
@@ -142,8 +139,7 @@ class HBNBCommand (cmd.Cmd):
                     elif List[2] not in attrbte:
                         obj.__dict__[List[2]] = List[3]
                         obj.updated_at = datetime.now()
-                        storage.save()
-      
+                        storage.save()      
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
