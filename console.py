@@ -51,7 +51,7 @@ class HBNBCommand (cmd.Cmd):
                 print(new.id)
             except (NameError, SyntaxError):
                 print("** class doesn't exist **")
-      
+
     def do_show(self, arg):
         """show object by id"""
         List = arg.split()
@@ -139,7 +139,7 @@ class HBNBCommand (cmd.Cmd):
                     elif List[2] not in attrbte:
                         obj.__dict__[List[2]] = List[3]
                         obj.updated_at = datetime.now()
-                        storage.save()     
+                        storage.save()   
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
