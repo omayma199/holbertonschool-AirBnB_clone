@@ -5,7 +5,6 @@ from  models import state
 from models.state  import State
 from models.base_model import BaseModel
 from uuid import UUID
-from models import storage
 from datetime import datetime
 from models import storage
 
