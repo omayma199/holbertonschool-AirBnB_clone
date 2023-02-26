@@ -116,10 +116,8 @@ class HBNBCommand (cmd.Cmd):
 
         if len(List) == 0:
             print("** class name missing **")
-            return
         else:
             print("** class doesn't exist **")
-            
         if List[0] in self.classes:
             if len(List) < 2:
                 print("** instance id missing **")
