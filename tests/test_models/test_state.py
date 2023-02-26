@@ -7,6 +7,7 @@ from models.base_model import BaseModel
 from uuid import UUID
 from models import storage
 from datetime import datetime
+from models import storage
 
 class TestCityClass(unittest.TestCase):
     """TestCityClass test for the city class
