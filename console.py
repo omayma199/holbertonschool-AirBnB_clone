@@ -12,7 +12,7 @@ from models.state import State
 from models.city import City
 from models.amenity import Amenity
 from models.review import Review
-import shlex 
+
 
 
 storage = models.storage
@@ -22,8 +22,11 @@ class HBNBCommand (cmd.Cmd):
     """Console class"""
 
     prompt = '(hbnb) '
-    classes = {"Amenity": Amenity, "BaseModel": BaseModel, "City": City,
-           "Place": Place, "Review": Review, "State": State, "User": User}
+    classes = {
+               'BaseModel': BaseModel, 'User': User, 'Place': Place,
+               'State': State, 'City': City, 'Amenity': Amenity,
+               'Review': Review
+              }
 
     def emptyline(self):
         pass
@@ -96,22 +99,18 @@ class HBNBCommand (cmd.Cmd):
             else:
                 print("** no instance found **")
         
-   def do_all(self, arg):
-        """Prints string representations of instances"""
-        args = shlex.split(arg)
+    def do_all(self, arg):
+        List = arg.split()
         obj_list = []
-        if len(args) == 0:
-            obj_dict = storage.all()
-        elif args[0] in classes:
-            obj_dict = storage.all(classes[args[0]])
+        if List[0] in classes:
+            newList = []
+            for key, value in  storage.all().items():
+                if value.__class__.__name__== List[0]:
+                    newList += [value.__str__()]
+            print(newList)
+
         else:
             print("** class doesn't exist **")
-            return False
-        for key in obj_dict:
-            obj_list.append(str(obj_dict[key]))
-        print("[", end="")
-        print(", ".join(obj_list), end="")
-        print("]")
             
 
     def do_update(self, arg):
