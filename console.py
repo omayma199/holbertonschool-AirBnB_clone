@@ -111,11 +111,12 @@ class HBNBCommand (cmd.Cmd):
             print(newList)
 
     def do_update(self, arg):
-        if not arg:
+        List = arg.split()
+        Objts =  models.storage.all()
+
+        if len(List) == 0:
             print("** class name missing **")
             return
-        List = arg.split(" ")
-        Objts =  storage.all()
         if List[0] in self.classes:
             if len(List) < 2:
                 print("** instance id missing **")
