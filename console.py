@@ -117,6 +117,9 @@ class HBNBCommand (cmd.Cmd):
         if len(List) == 0:
             print("** class name missing **")
             return
+        else:
+            print("** class doesn't exist **")
+            
         if List[0] in self.classes:
             if len(List) < 2:
                 print("** instance id missing **")
@@ -137,8 +140,7 @@ class HBNBCommand (cmd.Cmd):
                         obj.__dict__[List[2]] = List[3]
                         obj.updated_at = datetime.now()
                         storage.save()
-        elif: List[0] not in self.classes:
-            print("** class doesn't exist **")
+      
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
