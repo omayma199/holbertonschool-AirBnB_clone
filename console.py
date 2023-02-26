@@ -54,12 +54,12 @@ class HBNBCommand (cmd.Cmd):
                 
     def do_show(self, arg):
         """show object by id"""
-        Lists = arg.split(arg)
-        if len(Lists) == 0:
+        List = arg.split(arg)
+        if len(List) == 0:
             print("** class name missing **")
             return False
-        if Lists[0] in classes:
-            if len(Lists) > 1:
+        if List[0] in classes:
+            if len(List) > 1:
                 key = Lists[0] + "." + Lists[1]
                 if key in models.storage.all():
                     print(models.storage.all()[key])
