@@ -120,11 +120,11 @@ class HBNBCommand (cmd.Cmd):
             if len(List) < 2:
                 print("** instance id missing **")
                 return
-            v = List[0] + "." + List[1]
+            value = List[0] + "." + List[1]
             if v not in Objts:
                 print("** no instance found **")
             else:
-                obj = Objts[v]
+                obj = Objts[value]
                 attrbte  = ["id", "created_at", "updated_at"]
                 if obj:
                     List = arg.split(" ")
