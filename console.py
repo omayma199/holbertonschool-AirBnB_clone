@@ -54,21 +54,26 @@ class HBNBCommand (cmd.Cmd):
                 
     def do_show(self, arg):
         """show object by id"""
-        List = arg.split(arg)
+        List = arg.split()
+        obj = []
         if len(List) == 0:
             print("** class name missing **")
-            return False
-        if List[0] in classes:
-            if len(List) > 1:
-                key = Lists[0] + "." + Lists[1]
-                if key in models.storage.all():
-                    print(models.storage.all()[key])
-                else:
-                    print("** no instance found **")
-            else:
-                print("** instance id missing **")
-        else:
+            return
+        try:
+            eval(arg[0])
+        except:
             print("** class doesn't exist **")
+            return
+        if len(arg) == 1:
+            print("** instance id missing **")
+        else:
+            obj = storage.all()
+            key_id = arg[0] + "." + arg[1]
+            if key_id in obj:
+                value = obj[key_id]
+                print(value)
+            else:
+                print("** no instance found **")
     
     def do_destroy(self, arg):
         list = arg.split()
@@ -111,8 +116,8 @@ class HBNBCommand (cmd.Cmd):
             return
         List = arg.split(" ")
         Objts =  storage.all()
-        if Lists[0] in self.classes:
-            if len(Lists) < 2:
+        if List[0] in self.classes:
+            if len(List) < 2:
                 print("** instance id missing **")
                 return
             v = List[0] + "." + List[1]
