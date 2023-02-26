@@ -1,6 +1,6 @@
 # holbertonschool-AirBnB_clone
 
-![reference image](/airBnb.png)
+![reference image](https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Airbnb_Logo_B%C3%A9lo.svg/1200px-Airbnb_Logo_B%C3%A9lo.svg.png)
 
 ##  1.Introduction
 The console is a command interpreter to manage objects abstraction between objects and how they are stored.
