@@ -102,7 +102,7 @@ class HBNBCommand (cmd.Cmd):
     def do_all(self, arg):
         List = arg.split()
         obj_list = []
-        if List[0] in self.classes:
+        if List[0] in classes:
             newList = []
             for key, value in  storage.all().items():
                 if value.__class__.__name__== List[0]:
