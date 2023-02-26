@@ -60,11 +60,11 @@ class HBNBCommand (cmd.Cmd):
             print("** class name missing **")
             return
         try:
-            eval(List[1])
+            eval(List[0])
         except:
             print("** class doesn't exist **")
             return
-        if len(arg) == 1:
+        if len(List) == 1:
             print("** instance id missing **")
         else:
             obj = storage.all()
