@@ -60,7 +60,7 @@ class HBNBCommand (cmd.Cmd):
             print("** class name missing **")
             return
         try:
-            eval(arg[0])
+            eval(List[1])
         except:
             print("** class doesn't exist **")
             return
@@ -68,7 +68,7 @@ class HBNBCommand (cmd.Cmd):
             print("** instance id missing **")
         else:
             obj = storage.all()
-            key_id = arg[0] + "." + arg[1]
+            key_id = List[0] + "." + List[1]
             if key_id in obj:
                 value = obj[key_id]
                 print(value)
