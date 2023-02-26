@@ -2,7 +2,7 @@
 
 ![reference image](https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Airbnb_Logo_B%C3%A9lo.svg/1200px-Airbnb_Logo_B%C3%A9lo.svg.png)
 
-##  1.Introduction
+##  1. Introduction
 The console is a command interpreter to manage objects abstraction between objects and how they are stored.
 
 
@@ -14,7 +14,7 @@ The console will perform the following tasks:
 - do operations on objects
 - destroy an object
 
-##  2.Available Command:
+##  2. Available Command:
 The commands available for this command interpreter are:
 
 
