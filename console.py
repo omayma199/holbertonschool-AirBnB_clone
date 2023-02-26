@@ -16,16 +16,16 @@ from models.review import Review
 
 storage = models.storage
 
- classes = {
-               'BaseModel': BaseModel, 'User': User, 'Place': Place,
-               'State': State, 'City': City, 'Amenity': Amenity,
-               'Review': Review
-              }
+
 class HBNBCommand (cmd.Cmd):
     """Console class"""
 
     prompt = '(hbnb) '
-   
+    classes = {
+               'BaseModel': BaseModel, 'User': User, 'Place': Place,
+               'State': State, 'City': City, 'Amenity': Amenity,
+               'Review': Review
+              }
 
     def emptyline(self):
         pass
