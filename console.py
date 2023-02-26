@@ -101,9 +101,9 @@ class HBNBCommand (cmd.Cmd):
         args = shlex.split(arg)
         obj_list = []
         if len(args) == 0:
-            obj_dict = models.storage.all()
+            obj_dict = storage.all()
         elif args[0] in classes:
-            obj_dict = models.storage.all(classes[args[0]])
+            obj_dict = storage.all(classes[args[0]])
         else:
             print("** class doesn't exist **")
             return False
