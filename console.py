@@ -12,7 +12,7 @@ from models.state import State
 from models.city import City
 from models.amenity import Amenity
 from models.review import Review
-
+import shlex 
 
 
 storage = models.storage
@@ -96,17 +96,22 @@ class HBNBCommand (cmd.Cmd):
             else:
                 print("** no instance found **")
         
-    def do_all(self, arg):
-        List = arg.split()
-        if List[0] in self.classes:
-            newList = []
-            for key, value in  storage.all().items():
-                if value.__class__.__name__== List[0]:
-                    newList += [value.__str__()]
-            print(newList)
-            
+   def do_all(self, arg):
+        """Prints string representations of instances"""
+        args = shlex.split(arg)
+        obj_list = []
+        if len(args) == 0:
+            obj_dict = models.storage.all()
+        elif args[0] in classes:
+            obj_dict = models.storage.all(classes[args[0]])
         else:
             print("** class doesn't exist **")
+            return False
+        for key in obj_dict:
+            obj_list.append(str(obj_dict[key]))
+        print("[", end="")
+        print(", ".join(obj_list), end="")
+        print("]")
             
 
     def do_update(self, arg):
