@@ -20,7 +20,7 @@ class FileStorage:
 
     def new(self, obj):
         FileStorage.__objects["{}.{}".format(obj.__class__
-                                    .__name__, obj.id)] = obj
+                              .__name__, obj.id)] = obj
 
     def save(self):
         dict = {}
